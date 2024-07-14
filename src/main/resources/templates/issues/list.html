@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>課題一覧 | 課題管理アプリケーション</title>
+</head>
+<body>
+<h1>課題一覧</h1>
+<a href="../index.html" th:href="@{/}">トップページ</a>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>概要</th>
+    </tr>
+    </thead>
+    <tbody th:each="issue : ${issueList}" >
+        <tr>
+            <td th:text="${issue.id}">(id)</td>
+            <td th:text="${issue.summary}">(summary)</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
