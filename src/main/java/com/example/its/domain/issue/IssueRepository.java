@@ -1,5 +1,6 @@
 package com.example.its.domain.issue;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -17,4 +18,12 @@ public interface IssueRepository {
      */
     @Select("select * from issues")
     List<IssueEntity> findAll();
+
+    /**
+     * 登録
+     * @param summary 概要
+     * @param description 説明
+     */
+    @Insert("insert into issues (summary, description) values(#{summary}, #{description})")
+    void insert(String summary, String description);
 }

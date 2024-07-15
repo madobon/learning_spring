@@ -1,6 +1,7 @@
 package com.example.its.domain.issue;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,5 +27,15 @@ public class IssueService {
      */
     public List<IssueEntity> findAll(){
         return issueRepository.findAll();
+    }
+
+    /**
+     * 登録（トランザクション制御あり）
+     * @param summary 概要
+     * @param description 説明
+     */
+    @Transactional
+    public void create(String summary, String description) {
+        issueRepository.insert(summary, description);
     }
 }
