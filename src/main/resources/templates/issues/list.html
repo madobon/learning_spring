@@ -13,14 +13,16 @@
     <tr>
         <th>#</th>
         <th>概要</th>
-        <th>説明</th>
     </tr>
     </thead>
     <tbody th:each="issue : ${issueList}" >
         <tr>
             <td th:text="${issue.id}">(id)</td>
-            <td th:text="${issue.summary}">(summary)</td>
-            <td th:text="${issue.description}">(description)</td>
+            <td>
+                <a href="./detail.html" th:href="@{/issues/{issueId}(issueId=${issue.id})}" th:text="${issue.summary}">
+                    (summary)
+                </a>
+            </td>
         </tr>
     </tbody>
 </table>
