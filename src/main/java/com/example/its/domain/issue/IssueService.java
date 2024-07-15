@@ -10,15 +10,21 @@ import java.util.List;
 @Service
 public class IssueService {
 
+    private final IssueRepository issueRepository;
+
+    /**
+     * コンストラクタ
+     * @param issueRepository 課題リポジトリ
+     */
+    public IssueService(IssueRepository issueRepository) {
+        this.issueRepository = issueRepository;
+    }
+
     /**
      * 全件検索
      * @return 課題一覧
      */
     public List<IssueEntity> findAll(){
-        return List.of(
-            new IssueEntity(1, "概要1", "説明1"),
-            new IssueEntity(2, "概要2", "説明2"),
-            new IssueEntity(3, "概要3", "説明3")
-        );
+        return issueRepository.findAll();
     }
 }
