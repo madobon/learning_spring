@@ -38,4 +38,13 @@ public class IssueService {
     public void create(String summary, String description) {
         issueRepository.insert(summary, description);
     }
+
+    /**
+     * 取得
+     * @param issueId 課題ID
+     * @return 課題エンティティ
+     */
+    public IssueEntity findById(long issueId) {
+       return issueRepository.findById(issueId);
+    }
 }

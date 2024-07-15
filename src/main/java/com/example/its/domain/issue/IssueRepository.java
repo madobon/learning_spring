@@ -26,4 +26,12 @@ public interface IssueRepository {
      */
     @Insert("insert into issues (summary, description) values(#{summary}, #{description})")
     void insert(String summary, String description);
+
+    /**
+     * 取得
+     * @param issueId 課題ID
+     * @return 課題エンティティ
+     */
+    @Select("select * from issues where id = #{issueId}")
+    IssueEntity findById(long issueId);
 }

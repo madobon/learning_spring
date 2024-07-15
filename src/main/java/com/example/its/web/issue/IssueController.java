@@ -1,14 +1,12 @@
 package com.example.its.web.issue;
 
+import com.example.its.domain.issue.IssueEntity;
 import com.example.its.domain.issue.IssueService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 課題コントローラ
@@ -28,7 +26,7 @@ public class IssueController {
     }
 
     /**
-     * リスト
+     * 一覧表示
      * @param model モデル
      * @return 遷移先
      */
@@ -41,7 +39,7 @@ public class IssueController {
     }
 
     /**
-     * 登録フォーム
+     * 登録フォーム表示
      */
     @GetMapping("creationForm")
     public String showCreationForm(@ModelAttribute IssueForm form) {
@@ -49,7 +47,7 @@ public class IssueController {
     }
 
     /**
-     * 登録処理
+     * 登録処理（PRGパターン）
      * @param form 課題フォーム
      * @param model モデル
      * @return 遷移先
@@ -65,6 +63,20 @@ public class IssueController {
         }
 
         issueService.create(form.summary(), form.description());
+
         return "redirect:/issues";
+    }
+
+    /**
+     * 詳細表示
+     * @param issueId 課題ID
+     * @param model モデル
+     * @return 遷移先
+     */
+    @GetMapping("/{issueId}")
+    public String showDetail(@PathVariable("issueId") long issueId, Model model) {
+        var data = issueService.findById(issueId);
+        model.addAttribute("issue", data);
+        return "issues/detail";
     }
 }
