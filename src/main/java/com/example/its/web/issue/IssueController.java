@@ -46,9 +46,15 @@ public class IssueController {
         return "issues/creationForm";
     }
 
+    /**
+     * 登録処理
+     * @param form 課題フォーム
+     * @param model モデル
+     * @return 遷移先
+     */
     @PostMapping
     public String create(IssueForm form, Model model) {
         issueService.create(form.summary(), form.description());
-        return showList(model); // TODO: リロードボタン対策が必要
+        return "redirect:/issues";
     }
 }
