@@ -4,11 +4,15 @@ import com.example.its.domain.issue.IssueService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 課題コントローラ
  */
 @Controller
+@RequestMapping("/issues")
 public class IssueController {
 
     private final IssueService issueService;
@@ -26,11 +30,25 @@ public class IssueController {
      * @param model モデル
      * @return 遷移先
      */
-    @GetMapping("/issues")
-    public String list(Model model) {
+    @GetMapping
+    public String showList(Model model) {
         var list = issueService.findAll();
 
         model.addAttribute("issueList", list);
         return "issues/list";
+    }
+
+    /**
+     * 登録フォーム
+     */
+    @GetMapping("creationForm")
+    public String showCreationForm(@ModelAttribute IssueForm form) {
+        return "issues/creationForm";
+    }
+
+    @PostMapping
+    public String create(IssueForm form, Model model) {
+        // TODO: データの永続化
+        return showList(model); // TODO: リロードボタン対策が必要
     }
 }
