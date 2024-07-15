@@ -1,13 +1,13 @@
 package com.example.its.web.issue;
 
-import com.example.its.domain.issue.IssueEntity;
 import com.example.its.domain.issue.IssueService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
+/**
+ * 課題コントローラ
+ */
 @Controller
 public class IssueController {
 
@@ -21,8 +21,13 @@ public class IssueController {
         this.issueService = issueService;
     }
 
+    /**
+     * リスト
+     * @param model モデル
+     * @return 遷移先
+     */
     @GetMapping("/issues")
-    public String showList(Model model) {
+    public String list(Model model) {
         var list = issueService.findAll();
 
         model.addAttribute("issueList", list);

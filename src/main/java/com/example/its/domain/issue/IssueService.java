@@ -4,17 +4,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 課題サービス
+ */
 @Service
 public class IssueService {
 
+    /**
+     * 全件検索
+     * @return 課題一覧
+     */
     public List<IssueEntity> findAll(){
-        var list = List.of(
+        return List.of(
                 new IssueEntity(1, "概要1", "説明1"),
-
                 new IssueEntity(2, "概要2", "説明2"),
-
                 new IssueEntity(3, "概要3", "説明3")
         );
-        return list;
     }
 }
