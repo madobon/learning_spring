@@ -47,4 +47,12 @@ public class IssueService {
     public IssueEntity findById(long issueId) {
        return issueRepository.findById(issueId);
     }
+
+    /**
+     * 削除
+     * @param issueId 課題ID
+     */
+    public void delete(long issueId) {
+        issueRepository.deleteById(issueId);
+    }
 }

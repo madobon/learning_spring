@@ -68,6 +68,17 @@ public class IssueController {
     }
 
     /**
+     * 削除（PRGパターン）
+     * @param issueId 課題ID
+     * @return 遷移先
+     */
+    @PostMapping("/delete/{issueId}")
+    public String delete(@PathVariable("issueId") long issueId) {
+        issueService.delete(issueId);
+        return "redirect:/issues";
+    }
+
+    /**
      * 詳細表示
      * @param issueId 課題ID
      * @param model モデル
